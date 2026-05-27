@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#121111" />
+    <title>59 Tech | Diseño, tecnología e IA para negocios en Uruguay</title>
+    <meta
+      name="description"
+      content="59 Tech · Estudio digital uruguayo. Diseño gráfico, desarrollo web, automatización con IA y soporte técnico para negocios en crecimiento. Diseño en 48 hs."
+    />
+    <meta name="keywords" content="59 Tech, diseño gráfico Uruguay, desarrollo web Montevideo, IA negocios, automatización, soporte técnico, branding, reels, landing page" />
+    <meta name="author" content="Santiago Pérez · 59 Tech" />
+    <meta name="theme-color" content="#121111" />
+    <meta property="og:title" content="59 Tech | Diseño, tecnología e IA para negocios" />
+    <meta
+      property="og:description"
+      content="Estudio digital uruguayo. Diseño, desarrollo web, automatización con IA y soporte técnico. Diseño en 48 hs."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_UY" />
+    <meta property="og:url" content="https://59tech.uy/" />
+    <meta property="og:image" content="/assets/og-cover.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="59 Tech — Diseño, tecnología e IA" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="59 Tech | Diseño, tecnología e IA para negocios" />
+    <meta name="twitter:description" content="Estudio digital uruguayo. Diseño en 48 hs · Soporte por WhatsApp · IA a medida." />
+    <meta name="twitter:image" content="/assets/og-cover.svg" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <!-- Performance: preconnect a CDNs críticos antes de descargar recursos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://unpkg.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/home.css" />
+    <!-- Preload de fuentes críticas (LCP friendly) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" />
+    <!-- Importmap: Three.js + GSAP/ScrollTrigger por ESM CDN, sin bundler -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.165.0/build/three.module.js",
+        "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/+esm",
+        "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger.js/+esm"
+      }
+    }
+    </script>
+    <script src="/config.js"></script>
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <header class="site-header" id="site-header">
+      <a class="brand" href="/" data-route="/" aria-label="59 Tech inicio">
+        <img src="/assets/logo-59tech.svg" alt="Logo 59 Tech" class="brand-logo" width="40" height="40" decoding="async" />
+        <span class="brand-text">59 Tech</span>
+      </a>
+
+      <button class="icon-button menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="/" data-route="/">INICIO</a>
+        <a href="/servicios" data-route="/servicios">SERVICIOS</a>
+        <a href="/portafolio" data-route="/portafolio">PORTAFOLIO</a>
+        <a href="/vip" data-route="/vip">VIP</a>
+        <a href="/nosotros" data-route="/nosotros">NOSOTROS</a>
+      </nav>
+
+      <div class="account-wrap">
+        <button class="account-trigger" type="button" id="account-trigger" aria-label="Cuenta" aria-expanded="false">
+          <span class="account-avatar-wrap" aria-hidden="true">
+            <img class="account-avatar" id="account-avatar" alt="" hidden />
+            <span class="account-icon"></span>
+          </span>
+          <span class="account-label">Cuenta</span>
+        </button>
+        <div class="account-menu" id="account-menu" hidden>
+          <div class="account-menu-head">
+            <strong>59 Tech</strong>
+            <span id="account-menu-status">Acceso de cliente</span>
+          </div>
+          <button type="button" data-account-action="login">Ingresar</button>
+          <button type="button" data-account-action="signup">Crear cuenta</button>
+          <button type="button" data-account-action="pay">Pagar servicio</button>
+          <button type="button" data-account-action="account">Mi cuenta</button>
+          <button type="button" data-account-action="admin">Panel admin</button>
+          <button type="button" data-account-action="logout" class="danger">Cerrar sesión</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="route-page route-home" data-page="home">
+        <!-- Canvas global FIXED para la esfera 3D + partículas que escapan del contenedor.
+             Un solo canvas full-viewport: las partículas pueden moverse a cualquier parte
+             de la pantalla sin que las recorten secciones superpuestas. -->
+        <div class="orb-journey" aria-hidden="true">
+          <canvas id="tech-orb" class="orb-canvas"></canvas>
+          <div class="orb-fallback"></div>
+        </div>
+
+        <!-- 1) HERO — video del logo 59 Tech (fondo transparente vía blend) -->
+        <section class="hero v2 section-shell" id="inicio" data-orb-state="hero">
+          <div class="hero-scroll-hint" aria-hidden="true">
+            <span>Scrolleá</span>
+            <svg viewBox="0 0 24 24"><path d="M12 4v14M5 13l7 7 7-7"/></svg>
+          </div>
+        </section>
+
+        <!-- 2) SERVICIOS -->
+        <section class="services v2 section-shell" id="servicios" data-orb-state="services" aria-labelledby="services-title">
+          <div class="section-head section-head-centered">
+            <span class="section-kicker">Servicios</span>
+            <h2 id="services-title">Soluciones digitales reales para empresas que quieren crecer.</h2>
+            <p>
+              Diseño, automatización, IA y desarrollo en un solo lugar.
+              Pensado para marcas, comercios y emprendedores que necesitan mejorar su imagen,
+              ordenar procesos y aprovechar la tecnología de forma simple y efectiva.
+            </p>
+          </div>
+          <div class="services-grid" id="services-grid"></div>
+        </section>
+
+        <!-- 4) POR QUÉ CONTRATAR -->
+        <section class="why-us section-shell" id="por-que" data-orb-state="why" aria-labelledby="why-title">
+          <div class="section-head section-head-centered">
+            <span class="section-kicker">Por qué contratar</span>
+            <h2 id="why-title">Razones para elegir 59 Tech.</h2>
+            <p>
+              No vendemos tecnología fría: vendemos mejora real. Equipo cercano, procesos claros y resultados
+              que se ven en tu negocio.
+            </p>
+          </div>
+          <div class="why-grid" id="why-grid"></div>
+        </section>
+
+        <!-- 5) PROCESO -->
+        <section class="process section-shell" id="proceso" data-orb-state="process" aria-labelledby="process-title">
+          <div class="section-head section-head-centered">
+            <span class="section-kicker">Cómo trabajamos</span>
+            <h2 id="process-title">De la idea al resultado en 4 pasos.</h2>
+            <p>
+              Un proceso claro, predecible y rápido. Sabés en cada momento qué viene y cuánto falta.
+            </p>
+          </div>
+          <div class="process-track" id="process-track"></div>
+        </section>
+
+        <!-- 6) PORTFOLIO -->
+        <section class="portfolio v2 section-shell" id="portafolio" data-orb-state="portfolio" aria-labelledby="portfolio-title">
+          <div class="section-head section-head-centered">
+            <span class="section-kicker">Portafolio</span>
+            <h2 id="portfolio-title">Trabajos recientes.</h2>
+            <p>Filtrá por tipo de servicio para ver lo que más te interesa.</p>
+          </div>
+          <div class="portfolio-filters" id="portfolio-filters" role="tablist" aria-label="Filtrar proyectos"></div>
+          <div class="portfolio-grid" id="portfolio-grid"></div>
+          <div class="portfolio-empty" id="portfolio-empty" hidden>
+            <p>Pronto sumamos proyectos en esta categoría. Mientras tanto, contanos tu idea por WhatsApp.</p>
+          </div>
+        </section>
+
+        <!-- 7) MEMBRESÍA VIP -->
+        <section class="vip v2 section-shell" id="vip" data-orb-state="vip" aria-labelledby="vip-title">
+          <div class="vip-glow" aria-hidden="true"></div>
+          <div class="section-head section-head-centered">
+            <span class="section-kicker vip-kicker">Membresía VIP</span>
+            <h2 id="vip-title">59 TECH <span class="vip-mark">VIP</span></h2>
+            <p>
+              Para negocios que necesitan respuesta rápida, mantenimiento continuo y prioridad en cada proyecto.
+              Una sola cuota mensual y todo el equipo a tu disposición.
+            </p>
+          </div>
+          <div class="vip-grid" id="vip-grid"></div>
+        </section>
+
+        <!-- 8) CTA FINAL -->
+        <section class="final-cta section-shell" id="cta-final" data-orb-state="cta" aria-labelledby="cta-final-title">
+          <div id="final-cta-content"></div>
+        </section>
+
+        <!-- 9) NOSOTROS + CONTACTO -->
+        <section class="about v2 section-shell" id="nosotros" data-orb-state="contact" aria-labelledby="about-title">
+          <div class="about-layout">
+            <div>
+              <span class="section-kicker">Nosotros</span>
+              <h2 id="about-title">Un equipo cercano, profesional y obsesionado con que tu negocio crezca.</h2>
+              <p>
+                59 Tech nace con una idea clara: ayudar a negocios reales a crecer usando diseño, tecnología e
+                inteligencia artificial de una forma simple, útil y profesional.
+              </p>
+              <p>
+                No creemos en implementar herramientas porque sí. Creemos en entender cómo trabaja cada negocio,
+                detectar dónde se pierde tiempo, dónde falta orden y dónde una mejor imagen puede marcar la diferencia.
+              </p>
+              <a class="btn btn-primary" href="https://wa.me/59892768291?text=Hola%2059%20Tech%2C%20quiero%20hablar%20de%20mi%20proyecto." target="_blank" rel="noreferrer">
+                Hablemos de tu proyecto
+                <svg class="btn-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+            <div class="values-grid" id="values-grid"></div>
+          </div>
+
+          <div class="contact-block">
+            <div class="contact-block-head">
+              <h3>Contacto</h3>
+            </div>
+            <div class="contact-grid" id="contact-grid"></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="route-page pay-page" data-page="pagar" hidden>
+        <section class="page-hero section-shell">
+          <div>
+            <p class="eyebrow">Pagos 59 Tech</p>
+            <h1>Pagar servicio</h1>
+            <p>
+              Pagá por Prex o coordiná efectivo para confirmar tu servicio.
+            </p>
+          </div>
+        </section>
+
+        <section class="payment section-shell">
+          <div class="payment-intro">
+            <p>
+              Gracias por confiar en 59 Tech. El método digital disponible es Prex. Si preferís efectivo,
+              podés coordinarlo por WhatsApp antes o al momento del servicio.
+            </p>
+            <strong>Importante: el servicio se confirma una vez recibido el comprobante de pago.</strong>
+          </div>
+
+          <div class="payment-grid payment-grid-simple">
+            <article class="method-card method-featured">
+              <span class="method-label">Prex</span>
+              <h2>Pago por Prex</h2>
+              <img class="prex-qr" id="qr-prex" src="/assets/qr-prex.png" alt="QR de pago por Prex · Cuenta 1107459" width="280" height="280" loading="lazy" decoding="async" />
+              <dl>
+                <div><dt>Cuenta Prex</dt><dd>1107459</dd></div>
+                <div><dt>Concepto</dt><dd>Servicio 59 Tech</dd></div>
+              </dl>
+              <button class="btn btn-primary" type="button" id="copy-prex">Copiar datos de Prex</button>
+              <p class="feedback" id="copy-feedback" role="status"></p>
+            </article>
+
+            <article class="method-card">
+              <span class="method-label">Efectivo coordinado</span>
+              <h2>Pago en efectivo</h2>
+              <p>Podés coordinar el pago en efectivo por WhatsApp para acordar el momento y confirmar el servicio.</p>
+              <a
+                class="btn btn-ghost"
+                href="https://wa.me/59892768291?text=Hola%2C%20quiero%20coordinar%20el%20pago%20en%20efectivo%20de%20un%20servicio%20de%2059%20Tech."
+                target="_blank"
+                rel="noreferrer"
+              >
+                Coordinar por WhatsApp
+              </a>
+            </article>
+          </div>
+
+          <div class="payment-bottom">
+            <div class="steps-block">
+              <h2>Cómo confirmar tu pago</h2>
+              <ol>
+                <li>Escaneá el QR de Prex o copiá los datos de pago.</li>
+                <li>Realizá el pago con concepto “Servicio 59 Tech”.</li>
+                <li>Tocá “Enviar comprobante por WhatsApp”.</li>
+                <li>Adjuntá la captura o comprobante del pago.</li>
+              </ol>
+              <a
+                class="btn btn-primary"
+                href="https://wa.me/59892768291?text=Hola%2C%20ya%20realic%C3%A9%20el%20pago%20del%20servicio%20de%2059%20Tech.%20Te%20env%C3%ADo%20el%20comprobante."
+                target="_blank"
+                rel="noreferrer"
+              >
+                Enviar comprobante por WhatsApp
+              </a>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="route-page auth-page" data-page="login" hidden>
+        <section class="auth-shell section-shell">
+          <div class="auth-art">
+            <img src="/assets/logo-59tech.svg" alt="Logo 59 Tech" width="48" height="48" loading="lazy" decoding="async" />
+            <h1>Acceso 59 Tech</h1>
+            <p>Entrá a tu cuenta para gestionar tus accesos, consultar información básica y continuar servicios con 59 Tech.</p>
+          </div>
+          <div class="auth-panel">
+            <div class="auth-tabs" role="tablist" aria-label="Acceso">
+              <button class="auth-tab active" type="button" data-auth-tab="login">Ingresar</button>
+              <button class="auth-tab" type="button" data-auth-tab="signup">Crear cuenta</button>
+            </div>
+
+            <form id="login-form" class="auth-form" autocomplete="on">
+              <label>
+                Correo
+                <input type="email" id="login-email" name="email" required autocomplete="email" />
+              </label>
+              <label>
+                Contraseña
+                <input type="password" id="login-password" name="password" required autocomplete="current-password" />
+              </label>
+              <button class="btn btn-primary full" type="submit">Iniciar sesión</button>
+              <button class="link-button" type="button" id="reset-password">Recuperar contraseña</button>
+            </form>
+
+            <form id="signup-form" class="auth-form" hidden autocomplete="on">
+              <label>
+                Nombre
+                <input type="text" id="signup-name" name="name" required autocomplete="name" />
+              </label>
+              <label>
+                Correo
+                <input type="email" id="signup-email" name="email" required autocomplete="email" />
+              </label>
+              <label>
+                Contraseña
+                <input
+                  type="password"
+                  id="signup-password"
+                  name="password"
+                  required
+                  minlength="8"
+                  pattern="(?=.*[A-Z])(?=.*\d).{8,}"
+                  autocomplete="new-password"
+                />
+              </label>
+              <p class="form-hint">Mínimo 8 caracteres, una mayúscula y un número.</p>
+              <button class="btn btn-primary full" type="submit">Crear cuenta</button>
+            </form>
+
+            <p class="auth-status" id="auth-status" role="status"></p>
+          </div>
+        </section>
+      </section>
+
+      <section class="route-page account-page" data-page="cuenta" hidden>
+        <section class="section-shell account-shell">
+          <div class="section-head">
+            <p class="section-kicker">Cuenta</p>
+            <h1>Tu espacio 59 Tech</h1>
+            <p>Gestioná tus datos, seguridad y accesos rápidos desde un espacio privado.</p>
+          </div>
+          <div id="account-content"></div>
+        </section>
+      </section>
+
+      <section class="route-page admin-page" data-page="admin" hidden>
+        <div class="admin-layout">
+          <aside class="admin-sidebar">
+            <a class="admin-brand" href="/" data-route="/">
+              <img src="/assets/logo-59tech.svg" alt="Logo 59 Tech" width="48" height="48" loading="lazy" decoding="async" />
+              <span>59 Tech Admin</span>
+            </a>
+            <nav class="admin-nav" aria-label="Panel admin">
+              <button type="button" data-admin-tab="dashboard" class="active">Dashboard</button>
+              <button type="button" data-admin-tab="facturapp">Facturación</button>
+              <button type="button" data-admin-tab="settings">Configuración</button>
+            </nav>
+            <button class="btn btn-ghost full" type="button" id="logout-btn">Cerrar sesión</button>
+          </aside>
+
+          <section class="admin-main">
+            <div class="admin-topbar">
+              <div>
+                <p class="section-kicker">Organización interna</p>
+                <h1 id="admin-title">Dashboard</h1>
+              </div>
+              <div class="session-pill" id="session-pill">Sesión</div>
+            </div>
+            <div class="admin-tab" data-admin-panel="dashboard" id="admin-dashboard"></div>
+            <div class="admin-tab" data-admin-panel="facturapp" id="admin-facturapp" hidden></div>
+            <div class="admin-tab" data-admin-panel="settings" id="admin-settings" hidden></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <img src="/assets/logo-59tech.svg" alt="Logo 59 Tech" width="48" height="48" loading="lazy" decoding="async" />
+        <strong>59 Tech</strong>
+        <p>Diseño, tecnología e inteligencia artificial para negocios que quieren trabajar mejor.</p>
+      </div>
+      <nav aria-label="Navegación del pie">
+        <span class="footer-h">Sitio</span>
+        <a href="/" data-route="/">Inicio</a>
+        <a href="/servicios" data-route="/servicios">Servicios</a>
+        <a href="/nosotros" data-route="/nosotros">Nosotros</a>
+        <a href="/pagar" data-route="/pagar">Pagar servicio</a>
+      </nav>
+      <address class="footer-contact">
+        <span class="footer-h">Contacto</span>
+        <a class="footer-link" href="https://wa.me/59892768291?text=Hola%2059%20Tech" target="_blank" rel="noreferrer" aria-label="WhatsApp 59 Tech">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
+          WhatsApp
+        </a>
+        <a class="footer-link" href="mailto:soluciones59tech@gmail.com" aria-label="Email 59 Tech">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          soluciones59tech@gmail.com
+        </a>
+        <a class="footer-link" href="https://www.instagram.com/59tech.uy" target="_blank" rel="noreferrer" aria-label="Instagram 59 Tech">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>
+          @59tech.uy
+        </a>
+      </address>
+      <div class="footer-legal">
+        <span>© <span id="footer-year">2026</span> 59 Tech · Montevideo, Uruguay</span>
+        <span>Hecho con cariño en Uruguay 🇺🇾</span>
+      </div>
+    </footer>
+
+    <a
+      class="whatsapp-float"
+      id="whatsapp-float"
+      href="https://wa.me/59892768291"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Contactar por WhatsApp"
+    >
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="wa-grad" cx="50%" cy="42%" r="62%">
+            <stop offset="0%" stop-color="#5cf383"/>
+            <stop offset="55%" stop-color="#25d366"/>
+            <stop offset="100%" stop-color="#0d9c44"/>
+          </radialGradient>
+          <radialGradient id="wa-shine" cx="35%" cy="28%" r="35%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity=".85"/>
+            <stop offset="60%" stop-color="#ffffff" stop-opacity=".15"/>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="16" cy="16" r="15" fill="url(#wa-grad)"/>
+        <circle cx="16" cy="16" r="15" fill="url(#wa-shine)"/>
+        <path fill="#ffffff" d="M22.6 18.5c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.36-.5-2.59-1.6-.96-.85-1.6-1.91-1.79-2.23-.19-.32-.02-.5.14-.66.14-.14.32-.38.48-.56.16-.19.21-.32.32-.54.11-.21.05-.4-.03-.56-.08-.16-.73-1.75-1-2.4-.26-.62-.53-.54-.73-.55h-.62c-.21 0-.56.08-.85.4-.3.32-1.13 1.1-1.13 2.69s1.16 3.12 1.32 3.34c.16.21 2.27 3.46 5.5 4.86.77.33 1.37.53 1.84.68.77.24 1.47.21 2.03.13.62-.09 1.9-.78 2.17-1.53.27-.75.27-1.39.19-1.53-.08-.13-.3-.21-.62-.37z"/>
+        <path fill="#ffffff" d="M16.05 7c-4.97 0-9 4.03-9.01 8.99 0 1.59.42 3.14 1.21 4.51L7 25l4.59-1.2a8.99 8.99 0 0 0 4.46 1.13h.01c4.96 0 9-4.03 9.01-8.99a8.94 8.94 0 0 0-2.63-6.36 8.94 8.94 0 0 0-6.39-2.58zm0 16.22h-.01a7.45 7.45 0 0 1-3.81-1.04l-.27-.16-2.83.74.76-2.76-.18-.28a7.43 7.43 0 0 1-1.14-3.97c0-4.13 3.36-7.49 7.5-7.49 2 0 3.88.78 5.3 2.2a7.42 7.42 0 0 1 2.19 5.3c0 4.13-3.36 7.49-7.51 7.49z" opacity=".0"/>
+      </svg>
+    </a>
+    <div id="toast-root" class="toast-root" aria-live="polite" aria-atomic="true"></div>
+    <div id="print-root" class="print-root" aria-hidden="true"></div>
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  </body>
+</html>
